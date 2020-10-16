@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvp-icap-service
+  labels:
+    app: adaptation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adaptation    # indicates which Pods (with which labels) need be handled by this Deployment
+  template:
+    metadata:         # indicates the metadata that will be added to each Pod
+      labels:
+        app: adaptation     
+    spec:
+      containers:     # defines a running container inside the Pod
+        - name: mvp-icap-service
+          image: bigpeegee/mvp-icap-service:latest
+          ports:
+            - containerPort: 1344   # which port of the container is exposed to the Pod
+          envFrom:
+          # The ConfigMap we want to use
+          - configMapRef:
+              name: icap-service-config
+          volumeMounts:
+            - name: source-vol
+              mountPath: "/var/source"
+            - name: target-vol
+              mountPath: "/var/target"
+      volumes:
+        - name: source-vol
+          persistentVolumeClaim:
+            claimName: glasswallsource-pvc
+        - name: target-vol
+          persistentVolumeClaim:
+            claimName: glasswalltarget-pvc
+

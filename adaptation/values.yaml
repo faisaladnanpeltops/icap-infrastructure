@@ -1,0 +1,20 @@
+environment:
+serviceAccount:
+  name: adaptation-service-sa
+
+volumemountpath:
+  source: "/var/source"
+  target: "/var/target"  
+  
+adaptationservice:
+  name: adaptation-service
+  namespace: icap-adaptation
+  
+icapservice:
+  name: mvp-icap-service
+  
+icapserviceconfig:
+  originalstorename: "original-store"
+  outcomequeuename: "transaction-outcome"
+
+  
