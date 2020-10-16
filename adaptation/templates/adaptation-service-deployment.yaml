@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: {{ .Values.adaptationservice.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.adaptationservice.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.adaptationservice.name }}
+    spec:
+      containers:
+      - name: adaptation-service
+        image: glasswallsolutions/icap-adaptation-service
+        env:
+        - name: POD_NAMESPACE
+          value: {{ .Values.adaptationservice.namespace }}

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: icap-service-config
+data:
+  FileProcessingStorageOriginalStoreName: {{ .Values.icapserviceconfig.originalstorename }}
+  TransactionOutcomeQueueName: {{ .Values.icapserviceconfig.outcomequeuename }}

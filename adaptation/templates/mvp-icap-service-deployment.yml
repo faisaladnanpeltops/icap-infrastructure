@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mvp-icap-service
+  labels:
+    app: {{ .Values.icapservice.applabel }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.icapservice.applabel }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.icapservice.applabel }}     
+    spec:
+      containers:     
+        - name: mvp-icap-service
+          image: bigpeegee/mvp-icap-service:latest
+          ports:
+            - containerPort: 1344
+          envFrom:
+          - configMapRef:
+              name: icap-service-config
+          volumeMounts:
+            - name: source-vol
+              mountPath: "/var/source"
+            - name: target-vol
+              mountPath: "/var/target"
+      volumes:
+        - name: source-vol
+          persistentVolumeClaim:
+            claimName: glasswallsource-pvc
+        - name: target-vol
+          persistentVolumeClaim:
+            claimName: glasswalltarget-pvc
+
