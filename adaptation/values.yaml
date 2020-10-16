@@ -9,6 +9,8 @@ volumemountpath:
 adaptationservice:
   name: adaptation-service
   namespace: icap-adaptation
+  replicas: 1
+  amqpurl: "amqp://guest:guest@rabbitmq-service:5672/"
   
 icapservice:
   name: mvp-icap-service

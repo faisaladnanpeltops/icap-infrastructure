@@ -3,7 +3,7 @@ kind: Deployment
 metadata: 
   name: {{ .Values.adaptationservice.name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.adaptationservice.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.adaptationservice.name }}
@@ -14,7 +14,20 @@ spec:
     spec:
       containers:
       - name: adaptation-service
-        image: glasswallsolutions/icap-adaptation-service
+        image: diggers/icap-adaptation-service
         env:
         - name: POD_NAMESPACE
           value: {{ .Values.adaptationservice.namespace }}
+        - name: AMQP_URL
+          value: {{ .Values.adaptationservice.amqpurl }}
+        - name: INPUT_MOUNT
+          value: {{ .Values.volumemountpath.source }}
+        - name: OUTPUT_MOUNT
+          value: {{ .Values.volumemountpath.target }}
+        resources:
+          limits:
+            cpu: 1
+            memory: 500Mi
+          requests:
+            cpu: 0.5
+            memory: 100Mi
