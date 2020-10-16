@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: icap-service
   labels:
-    app: adaptation
+    app: {{ .Values.icapservice.applabel }}
 spec:
   type: NodePort
   selector:
-    app: adaptation
+    app: {{ .Values.icapservice.applabel }}
   ports:
   - port: 1344
     targetPort: 1344

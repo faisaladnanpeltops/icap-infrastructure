@@ -12,6 +12,7 @@ adaptationservice:
   
 icapservice:
   name: mvp-icap-service
+  applabel: adaptation
   
 icapserviceconfig:
   originalstorename: "original-store"
