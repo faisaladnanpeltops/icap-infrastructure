@@ -30,13 +30,6 @@ Install the cluster components
 helm install . --namespace icap-adaptation --generate-name
 ```
 
-If required, the following steps provide access to the RabbitMQ Management Console
-
-Open a command prompt into the RabbitMQ Pod
-```
-kubectl exec --stdin --tty -n icap-adaptation rabbitmq-controller-747n4 -- /bin/bash
-```
-
 The cluster's services should now be deployed
 ```
 > kubectl get pods -n icap-adaptation
@@ -44,6 +37,13 @@ NAME                                 READY   STATUS    RESTARTS   AGE
 adaptation-service-64cc49f99-kwfp6   1/1     Running   0          3m22s
 mvp-icap-service-b7ddccb9-gf4z6      1/1     Running   0          3m22s
 rabbitmq-controller-747n4            1/1     Running   0          3m22s
+```
+
+If required, the following steps provide access to the RabbitMQ Management Console
+
+Open a command prompt into the RabbitMQ Pod
+```
+kubectl exec --stdin --tty -n icap-adaptation rabbitmq-controller-747n4 -- /bin/bash
 ```
 
 Enable the Management Plugin, this step takes a couple of minutes
