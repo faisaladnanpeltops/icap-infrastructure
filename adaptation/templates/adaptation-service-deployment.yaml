@@ -15,7 +15,7 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
       - name: adaptation-service
-        image: glasswallsolutions/icap-adaptation-service
+        image: glasswallsolutions/icap-adaptation-service:main-latest
         env:
         - name: POD_NAMESPACE
           valueFrom:
