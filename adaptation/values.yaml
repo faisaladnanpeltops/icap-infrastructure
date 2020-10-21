@@ -11,7 +11,8 @@ adaptationservice:
   namespace: icap-adaptation
   replicas: 1
   amqpurl: "amqp://guest:guest@rabbitmq-service:5672/"
-  
+  rolename: adaptation-service-role
+
 icapservice:
   name: mvp-icap-service
   applabel: adaptation
@@ -19,5 +20,3 @@ icapservice:
 icapserviceconfig:
   originalstorename: "original-store"
   outcomequeuename: "transaction-outcome"
-
-  

@@ -12,6 +12,7 @@ spec:
       labels:
         app: {{ .Values.adaptationservice.name }}
     spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
       containers:
       - name: adaptation-service
         image: glasswallsolutions/icap-adaptation-service
