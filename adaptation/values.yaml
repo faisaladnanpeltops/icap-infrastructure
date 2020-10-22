@@ -30,6 +30,7 @@ icapservice:
   name: mvp-icap-service
   applabel: adaptation
   replicas: 1
+  port: 1344
   
 icapserviceconfig:
   processingtimeoutduration: 00:01:00
