@@ -4,7 +4,7 @@ metadata:
   name: {{ .Values.adaptationservice.rolename }}-binding
 subjects:
 - kind: ServiceAccount
-  name: {{ .Values.serviceAccount.name }}
+  name: {{ .Values.serviceAccount.adaptationname  }}
 roleRef:
   kind: Role #this must be Role or ClusterRole
   name: {{ .Values.adaptationservice.rolename }}
