@@ -1,6 +1,7 @@
 environment:
 serviceAccount:
-  name: adaptation-service-sa
+  adaptationname: adaptation-service-sa
+  janitorname: pod-janitor-sa
 
 volumemountpath:
   source: "/var/source"
@@ -20,3 +21,8 @@ icapservice:
 icapserviceconfig:
   originalstorename: "original-store"
   outcomequeuename: "transaction-outcome"
+
+podjanitor:
+  name: pod-janitor
+  namespace: icap-adaptation
+  rolename: janitor-role
