@@ -10,5 +10,5 @@ spec:
     app: {{ .Values.icapservice.applabel }}
   ports:
   - port: 1344
-    targetPort: 1344
+    targetPort:  {{ .Values.icapservice.port }}
 

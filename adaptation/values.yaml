@@ -7,6 +7,18 @@ volumemountpath:
   source: "/var/source"
   target: "/var/target"  
   
+queue:  
+  host:
+    url: "rabbitmq-service"
+    port: 5672
+    #rabbitUserName is the name of the secret where the RabbitMQ user name is stored for conntecting with the message broker.
+    #rabbitPassword is the name of the secret where the RabbitMQ password is stored for conntecting with the message broker.
+  adaptationRequest:
+    exchangename: "adaptation-exchange"
+    requestqueuename: "adaptation-request-queue"
+    replyqueuename: "amq.rabbitmq.reply-to"
+    messagename: "adaptation-request"  
+  
 adaptationservice:
   name: adaptation-service
   namespace: icap-adaptation
@@ -17,10 +29,10 @@ adaptationservice:
 icapservice:
   name: mvp-icap-service
   applabel: adaptation
+  replicas: 1
   
 icapserviceconfig:
-  originalstorename: "original-store"
-  outcomequeuename: "transaction-outcome"
+  processingtimeoutduration: 00:01:00
 
 podjanitor:
   name: pod-janitor

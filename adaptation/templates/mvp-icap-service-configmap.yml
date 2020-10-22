@@ -3,5 +3,12 @@ kind: ConfigMap
 metadata:
   name: icap-service-config
 data:
-  FileProcessingStorageOriginalStoreName: {{ .Values.icapserviceconfig.originalstorename }}
-  TransactionOutcomeQueueName: {{ .Values.icapserviceconfig.outcomequeuename }}
+  ProcessingTimeoutDuration: {{ .Values.icapserviceconfig.processingtimeoutduration }}
+  OriginalStorePath: {{ .Values.volumemountpath.source }}
+  RebuiltStorePath: {{ .Values.volumemountpath.target }}
+  ExchangeName: {{ .Values.queue.adaptationRequest.exchangename }}
+  RequestQueueName: {{ .Values.queue.adaptationRequest.requestqueuename }}
+  OutcomeQueueName: {{ .Values.queue.adaptationRequest.replyqueuename }}
+  RequestMessageName: {{ .Values.queue.adaptationRequest.messagename }}
+  MBHostName: {{ .Values.queue.host.url }}
+  MBPort: {{ .Values.queue.host.port }}

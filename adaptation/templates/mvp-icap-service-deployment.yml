@@ -5,7 +5,7 @@ metadata:
   labels:
     app: {{ .Values.icapservice.applabel }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.icapservice.replicas }}
   selector:
     matchLabels:
       app: {{ .Values.icapservice.applabel }}
@@ -24,9 +24,9 @@ spec:
               name: icap-service-config
           volumeMounts:
             - name: source-vol
-              mountPath: "/var/source"
+              mountPath: {{ .Values.volumemountpath.source }}
             - name: target-vol
-              mountPath: "/var/target"
+              mountPath: {{ .Values.volumemountpath.target }}
       volumes:
         - name: source-vol
           persistentVolumeClaim:
