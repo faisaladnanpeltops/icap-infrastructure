@@ -1,6 +1,7 @@
 environment:
 serviceAccount:
-  name: adaptation-service-sa
+  adaptationname: adaptation-service-sa
+  janitorname: pod-janitor-sa
 
 volumemountpath:
   source: "/var/source"
@@ -12,6 +13,11 @@ adaptationservice:
   replicas: 1
   amqpurl: "amqp://guest:guest@rabbitmq-service:5672/"
   rolename: adaptation-service-role
+
+podjanitor:
+  name: pod-janitor
+  namespace: icap-adaptation
+  rolename: janitor-role
 
 icapservice:
   name: mvp-icap-service
