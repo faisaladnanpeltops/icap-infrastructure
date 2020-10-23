@@ -15,7 +15,7 @@ spec:
       serviceAccountName: {{ .Values.serviceAccount.adaptationname  }}
       containers:
       - name: adaptation-service
-        image: glasswallsolutions/icap-adaptation-service:main-latest
+        image: peltops/icap-adaptation-service:v0.1
         env:
         - name: POD_NAMESPACE
           valueFrom:
@@ -27,6 +27,8 @@ spec:
           value: {{ .Values.volumemountpath.source }}
         - name: OUTPUT_MOUNT
           value: {{ .Values.volumemountpath.target }}
+        - name: POD_IMAGE
+          value: {{ .Values.adaptationservice.image }}          
         resources:
           limits:
             cpu: 1

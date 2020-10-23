@@ -10,6 +10,7 @@ volumemountpath:
 adaptationservice:
   name: adaptation-service
   namespace: icap-adaptation
+  image: peltops/icap-request-processing:v0.1
   replicas: 1
   amqpurl: "amqp://guest:guest@rabbitmq-service:5672/"
   rolename: adaptation-service-role
