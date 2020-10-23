@@ -1,0 +1,13 @@
+environment:
+serviceAccount:
+  name: administration-service-sa
+
+transactioneventapi:
+  name: transaction-event-api
+  namespace: icap-administration
+  replicas: 1
+  share: "transactions"
+  rolename: adaptation-service-role
+  applabel: transaction-event-api
+  secrets:
+    TransactionStoreConnectionStringCsv: REPLACE_ME

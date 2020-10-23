@@ -61,3 +61,15 @@ The management console now accessible through the browser
 http://localhost:8080/
 ```
 
+
+### Administration Cluster
+
+
+```
+cd .\administration
+```
+
+Create the Kubernetes namespace
+```
+kubectl create ns icap-administration
+```

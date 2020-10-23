@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.transactioneventapi.name }}
+  labels:
+    app: {{ .Values.transactioneventapi.name }}
+spec:
+  replicas: {{ .Values.transactioneventapi.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.transactioneventapi.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.transactioneventapi.applabel }}
+    spec:
+      containers:
+        - name: {{ .Values.transactioneventapi.name }}
+          image: "glasswallsolutions/transaction-event-api:master-latest"
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          env:
+          - name: TransactionStoreConnectionStringCsv
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.transactioneventapi.name }}-secret
+                key: TransactionStoreConnectionStringCsv
+          - name: ShareName
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.transactioneventapi.name }}-config
+                key: ShareName
